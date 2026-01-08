@@ -29,6 +29,9 @@ cmake -S StudentRegistrationSystem -B build
 cmake --build build -j
 ```
 
+### Running on different OS (Windows/macOS/Linux)
+See `RUNNING_ON_DIFFERENT_OS.md`.
+
 ### Run
 - **CLI demo**:
 

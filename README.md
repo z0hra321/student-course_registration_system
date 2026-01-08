@@ -4,5 +4,6 @@ This repository contains a **C++ student course registration system** with a **p
 
 - **Code + build files**: `StudentRegistrationSystem/`
 - **Build + run instructions**: see `StudentRegistrationSystem/README.md`
+- **Running on different OS**: see `RUNNING_ON_DIFFERENT_OS.md`
 
 
