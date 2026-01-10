@@ -1,4 +1,4 @@
-﻿# Student Registration System
+# Student Registration System
 
 A comprehensive **C++ student course registration system** with priority-based waitlist management and a modern graphical user interface.
 
@@ -8,37 +8,37 @@ This system allows educational institutions to manage student course registratio
 
 ## Features
 
-- âœ… **Student Management**: Add and manage students with unique IDs, names, and academic levels
-- âœ… **Course Management**: Create courses with specified capacities
-- âœ… **Smart Enrollment**: Automatic enrollment when seats are available
-- âœ… **Priority Waitlist**: Automatic waitlist management with priority-based queuing
+- **Student Management**: Add and manage students with unique IDs, names, and academic levels
+- **Course Management**: Create courses with specified capacities
+- **Smart Enrollment**: Automatic enrollment when seats are available
+- **Priority Waitlist**: Automatic waitlist management with priority-based queuing
   - Priority order: Senior > Junior > Sophomore > Freshman
   - FIFO (First-In-First-Out) tie-breaking within the same level
-- âœ… **Auto-Enrollment**: When a student drops a course, the next eligible student from the waitlist is automatically enrolled
-- âœ… **Dual Interface**: Both CLI and GUI applications available
-  - **CLI Demo** (waitlist_demo): Command-line interface for testing and automation
-  - **GUI App** (waitlist_gui): Modern graphical interface built with Dear ImGui
+- **Auto-Enrollment**: When a student drops a course, the next eligible student from the waitlist is automatically enrolled
+- **Dual Interface**: Both CLI and GUI applications available
+  - **CLI Demo** (`waitlist_demo`): Command-line interface for testing and automation
+  - **GUI App** (`waitlist_gui`): Modern graphical interface built with Dear ImGui
 
 ## Project Structure
 
-`
+```
 student-registration/
-â”œâ”€â”€ StudentRegistrationSystem/       # Main project directory
-â”‚   â”œâ”€â”€ include/                     # Header files
-â”‚   â”‚   â”œâ”€â”€ RegistrationSystem.h    # Main registration system class
-â”‚   â”‚   â””â”€â”€ WaitlistPQ.h            # Priority queue waitlist implementation
-â”‚   â”œâ”€â”€ src/                         # Source files
-â”‚   â”‚   â”œâ”€â”€ RegistrationSystem.cpp
-â”‚   â”‚   â””â”€â”€ WaitlistPQ.cpp
-â”‚   â”œâ”€â”€ tests/                       # Unit tests
-â”‚   â”‚   â””â”€â”€ test_waitlistpq.cpp
-â”‚   â”œâ”€â”€ main.cpp                     # CLI demo application
-â”‚   â”œâ”€â”€ gui_main.cpp                 # GUI application (Dear ImGui)
-â”‚   â”œâ”€â”€ CMakeLists.txt               # CMake build configuration
-â”‚   â””â”€â”€ README.md                    # Detailed build instructions
-â”œâ”€â”€ README.md                        # This file
-â””â”€â”€ RUNNING_ON_DIFFERENT_OS.md      # OS-specific setup instructions
-`
+├── StudentRegistrationSystem/       # Main project directory
+│   ├── include/                     # Header files
+│   │   ├── RegistrationSystem.h    # Main registration system class
+│   │   └── WaitlistPQ.h            # Priority queue waitlist implementation
+│   ├── src/                         # Source files
+│   │   ├── RegistrationSystem.cpp
+│   │   └── WaitlistPQ.cpp
+│   ├── tests/                       # Unit tests
+│   │   └── test_waitlistpq.cpp
+│   ├── main.cpp                     # CLI demo application
+│   ├── gui_main.cpp                 # GUI application (Dear ImGui)
+│   ├── CMakeLists.txt               # CMake build configuration
+│   └── README.md                    # Detailed build instructions
+├── README.md                        # This file
+└── RUNNING_ON_DIFFERENT_OS.md      # OS-specific setup instructions
+```
 
 ## Requirements
 
@@ -53,47 +53,47 @@ student-registration/
 - **Threads** library
 
 ### Operating Systems Supported
-- âœ… Linux (Ubuntu/Debian, Fedora)
-- âœ… macOS (with Homebrew)
-- âœ… Windows (Visual Studio or MSYS2/MinGW)
+- Linux (Ubuntu/Debian, Fedora)
+- macOS (with Homebrew)
+- Windows (Visual Studio or MSYS2/MinGW)
 
 ## Quick Start
 
 ### 1. Clone the Repository
 
-`bash
+```bash
 git clone https://github.com/z0hra321/student-registration.git
 cd student-registration
-`
+```
 
 ### 2. Build the Project
 
 From the repository root:
 
-`bash
+```bash
 cmake -S StudentRegistrationSystem -B build
 cmake --build build -j
-`
+```
 
 ### 3. Run the Applications
 
 **CLI Demo:**
-`bash
+```bash
 ./build/waitlist_demo      # Linux/macOS
 .\build\Release\waitlist_demo.exe  # Windows (Release)
-`
+```
 
 **GUI Application:**
-`bash
+```bash
 ./build/waitlist_gui       # Linux/macOS
 .\build\Release\waitlist_gui.exe   # Windows (Release)
-`
+```
 
 **Run Tests:**
-`bash
+```bash
 ./build/test_waitlistpq    # Linux/macOS
 .\build\Release\test_waitlistpq.exe  # Windows (Release)
-`
+```
 
 ## Detailed Setup Instructions
 
@@ -150,9 +150,9 @@ The GUI provides a user-friendly interface with:
 
 The project includes unit tests for the waitlist priority queue:
 
-`bash
+```bash
 ./build/test_waitlistpq
-`
+```
 
 These tests verify:
 - Priority ordering (Senior > Junior > Sophomore > Freshman)
@@ -163,13 +163,13 @@ These tests verify:
 
 You can customize the build with CMake options:
 
-`bash
+```bash
 # Disable GUI build
 cmake -S StudentRegistrationSystem -B build -DBUILD_GUI=OFF
 
 # Disable tests
 cmake -S StudentRegistrationSystem -B build -DBUILD_TESTS=OFF
-`
+```
 
 ## Technical Details
 
@@ -189,9 +189,9 @@ cmake -S StudentRegistrationSystem -B build -DBUILD_TESTS=OFF
 ## Troubleshooting
 
 ### GUI doesn't build
-- **Linux**: Install GLFW: sudo apt install libglfw3-dev (Ubuntu/Debian) or sudo dnf install glfw-devel (Fedora)
-- **macOS**: Install via Homebrew: rew install glfw
-- **Windows**: Use vcpkg: cpkg install glfw3, or configure with -DBUILD_GUI=OFF to skip GUI
+- **Linux**: Install GLFW: `sudo apt install libglfw3-dev` (Ubuntu/Debian) or `sudo dnf install glfw-devel` (Fedora)
+- **macOS**: Install via Homebrew: `brew install glfw`
+- **Windows**: Use vcpkg: `vcpkg install glfw3`, or configure with `-DBUILD_GUI=OFF` to skip GUI
 
 ### Build errors
 - Ensure C++17 support is enabled
@@ -199,7 +199,7 @@ cmake -S StudentRegistrationSystem -B build -DBUILD_TESTS=OFF
 - Verify all dependencies are installed (see [RUNNING_ON_DIFFERENT_OS.md](RUNNING_ON_DIFFERENT_OS.md))
 
 ### Headless environment
-- Use the CLI demo (waitlist_demo) instead of the GUI
+- Use the CLI demo (`waitlist_demo`) instead of the GUI
 - The GUI requires a display/GPU context
 
 ## Contributing
@@ -208,7 +208,7 @@ Contributions are welcome! Please ensure your code follows the existing style an
 
 ## License
 
-This project uses the Dear ImGui library (MIT License) for the GUI. See StudentRegistrationSystem/third_party/imgui/LICENSE.txt for details.
+This project uses the Dear ImGui library (MIT License) for the GUI. See `StudentRegistrationSystem/third_party/imgui/LICENSE.txt` for details.
 
 ## Author
 
