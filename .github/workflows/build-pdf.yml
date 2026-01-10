@@ -1,0 +1,45 @@
+name: Build LaTeX Report PDF
+
+on:
+  push:
+    paths:
+      - 'report.tex'
+      - '.github/workflows/build-pdf.yml'
+  workflow_dispatch:  # Allows manual triggering
+  pull_request:
+    paths:
+      - 'report.tex'
+
+jobs:
+  build-latex:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup TeX Live
+      uses: tecosaur/setup-tex@v1
+      with:
+        distribution: 'full'
+        
+    - name: Compile LaTeX to PDF
+      working-directory: ${{ github.workspace }}
+      run: |
+        pdflatex -interaction=nonstopmode report.tex
+        pdflatex -interaction=nonstopmode report.tex  # Second pass for references
+        
+    - name: Upload PDF artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: report-pdf
+        path: report.pdf
+        retention-days: 30
+        
+    - name: Commit PDF to repository
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add report.pdf
+        git diff --staged --quiet || git commit -m "Auto-generate PDF from LaTeX report [skip ci]"
+        git push
