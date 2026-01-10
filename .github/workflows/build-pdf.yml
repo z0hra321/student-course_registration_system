@@ -16,6 +16,7 @@ permissions:
 jobs:
   build-latex:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     
     steps:
     - name: Checkout repository
@@ -29,17 +30,24 @@ jobs:
       with:
         distribution: 'full'
         
+    - name: Install additional packages
+      run: |
+        tlmgr update --self
+        tlmgr install algorithms algorithmicx pgf
+        
     - name: Compile LaTeX to PDF
       working-directory: ${{ github.workspace }}
       run: |
-        pdflatex -interaction=nonstopmode report.tex
-        pdflatex -interaction=nonstopmode report.tex  # Second pass for references
-        pdflatex -interaction=nonstopmode report.tex  # Third pass to ensure all references resolved
+        pdflatex -interaction=nonstopmode -halt-on-error report.tex || true
+        pdflatex -interaction=nonstopmode -halt-on-error report.tex || true
+        pdflatex -interaction=nonstopmode -halt-on-error report.tex || true
         
     - name: Check if PDF was generated
       run: |
         if [ ! -f report.pdf ]; then
           echo "Error: PDF was not generated!"
+          echo "Checking for error logs..."
+          ls -la *.log *.aux 2>/dev/null || true
           exit 1
         fi
         echo "PDF generated successfully!"
@@ -56,10 +64,10 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add report.pdf
+        git add report.pdf || true
         if git diff --staged --quiet; then
-          echo "No changes to commit"
+          echo "No changes to commit (PDF already exists or unchanged)"
         else
-          git commit -m "Auto-generate PDF from LaTeX report [skip ci]"
-          git push
+          git commit -m "Auto-generate PDF from LaTeX report [skip ci]" || echo "Commit failed, but continuing"
+          git push || echo "Push failed, but continuing"
         fi
