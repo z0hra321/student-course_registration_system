@@ -10,6 +10,9 @@ on:
     paths:
       - 'report.tex'
 
+permissions:
+  contents: write  # Required to commit PDF
+
 jobs:
   build-latex:
     runs-on: ubuntu-latest
@@ -17,6 +20,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
       
     - name: Setup TeX Live
       uses: tecosaur/setup-tex@v1
@@ -28,18 +34,32 @@ jobs:
       run: |
         pdflatex -interaction=nonstopmode report.tex
         pdflatex -interaction=nonstopmode report.tex  # Second pass for references
+        pdflatex -interaction=nonstopmode report.tex  # Third pass to ensure all references resolved
+        
+    - name: Check if PDF was generated
+      run: |
+        if [ ! -f report.pdf ]; then
+          echo "Error: PDF was not generated!"
+          exit 1
+        fi
+        echo "PDF generated successfully!"
+        ls -lh report.pdf
         
     - name: Upload PDF artifact
       uses: actions/upload-artifact@v4
       with:
         name: report-pdf
         path: report.pdf
-        retention-days: 30
+        retention-days: 90
         
-    - name: Commit PDF to repository
+    - name: Commit and push PDF
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
         git add report.pdf
-        git diff --staged --quiet || git commit -m "Auto-generate PDF from LaTeX report [skip ci]"
-        git push
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Auto-generate PDF from LaTeX report [skip ci]"
+          git push
+        fi
