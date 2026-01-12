@@ -548,12 +548,150 @@ Student Registration System
 \end{lstlisting}
 
 \subsection{GUI Interface}
-The graphical interface built with Dear ImGui offers:
+
+The graphical user interface (GUI) built with Dear ImGui provides an intuitive, modern interface for managing the student registration system. The GUI is organized into multiple tabs, each dedicated to a specific aspect of the system.
+
+\subsubsection{Interface Overview}
+
+The GUI application features a tabbed interface that allows users to navigate between different functional areas:
+
 \begin{itemize}
-    \item Visual dashboard with real-time statistics
-    \item Form-based input for student and course creation
-    \item Interactive enrollment management
-    \item Waitlist visualization
+    \item \textbf{Students Tab}: Manage student records and information
+    \item \textbf{Courses Tab}: View and manage course catalog
+    \item \textbf{Registration Tab}: Handle course enrollments and drops
+    \item \textbf{My Courses Tab}: View enrolled courses for individual students
+    \item \textbf{Waitlist Tab}: Monitor and manage course waitlists
+\end{itemize}
+
+\subsubsection{Students Management Tab}
+
+The Students tab provides comprehensive student record management capabilities. Users can:
+
+\begin{itemize}
+    \item Add new students with their academic information
+    \item View all registered students in a scrollable list
+    \item Search and filter students by ID or name
+    \item Display student details including ID, name, and academic level
+    \item View enrollment statistics per student
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{studentstab.png}
+\caption{Students Management Tab - Interface for managing student records}
+\label{fig:students_tab}
+\end{figure}
+
+The interface displays student information in a clean, organized table format, making it easy to browse and manage large numbers of student records efficiently.
+
+\subsubsection{Courses Management Tab}
+
+The Courses tab enables administrators to manage the course catalog:
+
+\begin{itemize}
+    \item Add new courses with course code, title, and capacity
+    \item View all available courses in the system
+    \item Monitor enrollment statistics for each course
+    \item Check current enrollment count versus capacity
+    \item View waitlist size for each course
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{coursetab.png}
+\caption{Courses Management Tab - Course catalog and enrollment statistics}
+\label{fig:courses_tab}
+\end{figure}
+
+The course management interface provides real-time visibility into course availability, helping administrators make informed decisions about course capacity and scheduling.
+
+\subsubsection{Registration Tab}
+
+The Registration tab is the central hub for enrollment operations:
+
+\begin{itemize}
+    \item Enroll students in courses with a simple form interface
+    \item Drop course enrollments with immediate effect
+    \item View real-time enrollment status updates
+    \item Receive instant feedback on enrollment success or waitlist placement
+    \item Monitor auto-enrollment notifications when seats become available
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{Registerationtab.png}
+\caption{Registration Tab - Course enrollment and drop interface}
+\label{fig:registration_tab}
+\end{figure}
+
+The registration interface streamlines the enrollment process, providing immediate visual feedback and ensuring users understand the outcome of their registration attempts.
+
+\subsubsection{My Courses Tab}
+
+The My Courses tab provides students with a personalized view of their enrollment:
+
+\begin{itemize}
+    \item View all courses in which a student is currently enrolled
+    \item Display course details including code, title, and capacity
+    \item Check enrollment status and course information
+    \item Access quick drop functionality for enrolled courses
+    \item View enrollment history and statistics
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{mycoursestab.png}
+\caption{My Courses Tab - Student's personalized course view}
+\label{fig:mycourses_tab}
+\end{figure}
+
+This personalized interface helps students manage their course schedules efficiently and provides a clear overview of their academic commitments.
+
+\subsubsection{Waitlist Management Tab}
+
+The Waitlist tab offers comprehensive visibility into waitlist operations:
+
+\begin{itemize}
+    \item View all students currently on waitlists
+    \item Display waitlist entries organized by course
+    \item Show priority ordering based on academic level
+    \item Monitor waitlist position and estimated enrollment chances
+    \item Track auto-enrollment activity when seats become available
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{Waitlisttab.png}
+\caption{Waitlist Tab - Waitlist monitoring and management interface}
+\label{fig:waitlist_tab}
+\end{figure}
+
+The waitlist interface provides transparency into the priority queue system, allowing users to understand their position and the fairness of the enrollment process.
+
+\subsubsection{GUI Features and Benefits}
+
+The Dear ImGui-based interface offers several advantages:
+
+\begin{itemize}
+    \item \textbf{Immediate Mode Rendering}: Real-time updates without page refreshes
+    \item \textbf{Responsive Design}: Adapts to different window sizes
+    \item \textbf{Intuitive Navigation}: Tab-based organization for easy access
+    \item \textbf{Visual Feedback}: Color-coded status indicators and instant notifications
+    \item \textbf{Cross-Platform Compatibility}: Works on Windows, macOS, and Linux
+    \item \textbf{Performance}: Efficient rendering suitable for large datasets
+\end{itemize}
+
+\subsubsection{User Experience}
+
+The GUI design prioritizes user experience through:
+
+\begin{itemize}
+    \item Clear visual hierarchy and organization
+    \item Consistent interface patterns across all tabs
+    \item Immediate feedback for all user actions
+    \item Error messages displayed prominently when operations fail
+    \item Success confirmations for completed operations
+    \item Real-time data updates without manual refresh
 \end{itemize}
 
 \section{Performance Analysis}
